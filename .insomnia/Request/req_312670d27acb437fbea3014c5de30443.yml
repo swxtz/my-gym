@@ -1,0 +1,31 @@
+_id: req_312670d27acb437fbea3014c5de30443
+type: Request
+parentId: fld_b0fc6f48f7b64e06be54032a6bb46816
+modified: 1694300677970
+created: 1694300577622
+url: "{{ _.baseUrl }}/auth"
+name: Get JWT ( /auth )
+description: ""
+method: GET
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"email": "teste@teste.com",
+    	"password": "Teste123"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+  - name: User-Agent
+    value: Insomnia/2023.5.7
+authentication: {}
+metaSortKey: -1694300577622
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
