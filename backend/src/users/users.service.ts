@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common";
-import { CreateUserDto } from "./dto/create-user.dto";
-import { UpdateUserDto } from "./dto/update-user.dto";
+import { CreateUserDto } from "./dtos/create-user.dto";
+import { UpdateUserDto } from "./dtos/update-user.dto";
 import { PrismaService } from "src/prisma/prisma/prisma.service";
 import * as argon from "argon2";
 import { HttpException } from "@nestjs/common/exceptions";
 import { HttpStatus } from "@nestjs/common/enums";
-import { GetAllUserDto } from "./dto/get-all-user.dto";
-import { RemoveUserDto } from "./dto/remove-user.dto";
+import { GetAllUserDto } from "./dtos/get-all-user.dto";
+import { RemoveUserDto } from "./dtos/remove-user.dto";
 
 @Injectable()
 export class UsersService {

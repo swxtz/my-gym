@@ -8,12 +8,12 @@ import {
     Delete,
 } from "@nestjs/common";
 import { UsersService } from "./users.service";
-import { CreateUserDto } from "./dto/create-user.dto";
-import { UpdateUserDto } from "./dto/update-user.dto";
+import { CreateUserDto } from "./dtos/create-user.dto";
+import { UpdateUserDto } from "./dtos/update-user.dto";
 import { ZodValidationPipe } from "nestjs-zod";
 import { UsePipes } from "@nestjs/common/decorators";
-import { GetAllUserDto } from "./dto/get-all-user.dto";
-import { RemoveUserDto } from "./dto/remove-user.dto";
+import { GetAllUserDto } from "./dtos/get-all-user.dto";
+import { RemoveUserDto } from "./dtos/remove-user.dto";
 
 @Controller("users")
 export class UsersController {
