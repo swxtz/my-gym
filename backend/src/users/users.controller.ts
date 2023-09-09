@@ -12,6 +12,7 @@ import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { ZodValidationPipe } from "nestjs-zod";
 import { UsePipes } from "@nestjs/common/decorators";
+import { GetAllUserDto } from "./dto/get-all-user.dto";
 
 @Controller("users")
 export class UsersController {
@@ -23,9 +24,10 @@ export class UsersController {
         return this.usersService.create(createUserDto);
     }
 
-    @Get()
-    findAll() {
-        return this.usersService.findAll();
+    @Get("/all")
+    @UsePipes(new ZodValidationPipe(GetAllUserDto))
+    async findAll(@Body() findAllUserDto: GetAllUserDto) {
+        return this.usersService.findAll(findAllUserDto);
     }
 
     @Get(":id")

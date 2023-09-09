@@ -5,6 +5,7 @@ import { PrismaService } from "src/prisma/prisma/prisma.service";
 import * as argon from "argon2";
 import { HttpException } from "@nestjs/common/exceptions";
 import { HttpStatus } from "@nestjs/common/enums";
+import { GetAllUserDto } from "./dto/get-all-user.dto";
 
 @Injectable()
 export class UsersService {
@@ -29,6 +30,7 @@ export class UsersService {
                 email: createUserDto.email,
                 password: hash,
                 name: createUserDto.name,
+                userType: createUserDto?.userType,
             },
             select: {
                 name: true,
@@ -39,8 +41,42 @@ export class UsersService {
         return user;
     }
 
-    findAll() {
-        return `This action returns all users`;
+    //TODO: Trocar a authenticação para JWT
+    async findAll(data: GetAllUserDto) {
+        const verifyUser = await this.prisma.user.findUnique({
+            where: { email: data.email },
+            select: {
+                id: true,
+                email: true,
+                userType: true,
+            },
+        });
+
+        if (!verifyUser) {
+            throw new HttpException(
+                "Usuário não encontrado",
+                HttpStatus.NOT_FOUND,
+            );
+        }
+
+        if (verifyUser.userType !== "admin") {
+            throw new HttpException(
+                "Usuário não autorizado",
+                HttpStatus.UNAUTHORIZED,
+            );
+        }
+
+        return await this.prisma.user.findMany({
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                avatarUrl: true,
+                userType: true,
+                createdAt: true,
+                updatedAt: true,
+            },
+        });
     }
 
     findOne(id: number) {

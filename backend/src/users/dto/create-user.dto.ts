@@ -11,6 +11,7 @@ const schema = z.object({
         .string()
         .min(6, "A senha precisa de pelo menos 6 caracteres")
         .max(255, "A senha não pode ter mais de 255 caracteres"),
+    userType: z.enum(["admin", "user"]).optional(),
 });
 
 export class CreateUserDto extends createZodDto(schema) {}
