@@ -13,6 +13,7 @@ import { UpdateUserDto } from "./dto/update-user.dto";
 import { ZodValidationPipe } from "nestjs-zod";
 import { UsePipes } from "@nestjs/common/decorators";
 import { GetAllUserDto } from "./dto/get-all-user.dto";
+import { RemoveUserDto } from "./dto/remove-user.dto";
 
 @Controller("users")
 export class UsersController {
@@ -35,13 +36,18 @@ export class UsersController {
         return this.usersService.findUser(email);
     }
 
-    @Patch(":id")
-    async update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
-        return this.usersService.update(+id, updateUserDto);
+    @Patch(":email")
+    @UsePipes(new ZodValidationPipe(CreateUserDto))
+    async update(
+        @Param("email") email: string,
+        @Body() updateUserDto: UpdateUserDto,
+    ) {
+        return this.usersService.update(email, updateUserDto);
     }
 
-    @Delete(":id")
-    async remove(@Param("id") id: string) {
-        return this.usersService.remove(+id);
+    @Delete()
+    @UsePipes(new ZodValidationPipe(RemoveUserDto))
+    async remove(@Body() removeUserDto: RemoveUserDto) {
+        return this.usersService.remove(removeUserDto);
     }
 }

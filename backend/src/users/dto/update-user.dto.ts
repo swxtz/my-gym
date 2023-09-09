@@ -1,4 +1,10 @@
-import { PartialType } from "@nestjs/mapped-types";
-import { CreateUserDto } from "./create-user.dto";
+import { createZodDto } from "nestjs-zod";
+import { z } from "zod";
 
-export class UpdateUserDto extends PartialType(CreateUserDto) {}
+const schema = z.object({
+    email: z.string().email("O email precisa ser válido"),
+
+    userType: z.enum(["admin", "user"]).optional(),
+});
+
+export class UpdateUserDto extends createZodDto(schema) {}

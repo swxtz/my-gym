@@ -6,6 +6,7 @@ import * as argon from "argon2";
 import { HttpException } from "@nestjs/common/exceptions";
 import { HttpStatus } from "@nestjs/common/enums";
 import { GetAllUserDto } from "./dto/get-all-user.dto";
+import { RemoveUserDto } from "./dto/remove-user.dto";
 
 @Injectable()
 export class UsersService {
@@ -103,11 +104,47 @@ export class UsersService {
         return user;
     }
 
-    update(id: number, updateUserDto: UpdateUserDto) {
-        return `This action updates a #${id} user`;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async update(email: string, updateUserDto: UpdateUserDto) {
+        return `This action updates a user`;
     }
 
-    remove(id: number) {
-        return `This action removes a #${id} user`;
+    async remove(data: RemoveUserDto) {
+        const verifyUser = await this.prisma.user.findUnique({
+            where: { email: data.adminEmail },
+            select: {
+                name: true,
+                email: true,
+                userType: true,
+            },
+        });
+
+        if (!verifyUser || verifyUser.userType !== "admin") {
+            throw new HttpException(
+                "Usuário não autorizado",
+                HttpStatus.UNAUTHORIZED,
+            );
+        }
+
+        const user = await this.prisma.user.findUnique({
+            where: { email: data.targetEmail },
+            select: { id: true },
+        });
+
+        if (!user) {
+            throw new HttpException(
+                "Usuário não encontrado",
+                HttpStatus.NOT_FOUND,
+            );
+        }
+
+        await this.prisma.user.delete({
+            where: { email: data.targetEmail },
+        });
+
+        const message = `Usuário deletado com sucesso por ${verifyUser.name}, ${verifyUser.email}`;
+        return {
+            message,
+        };
     }
 }
