@@ -79,8 +79,28 @@ export class UsersService {
         });
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} user`;
+    async findUser(data: string) {
+        const user = await this.prisma.user.findUnique({
+            where: { email: data },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                avatarUrl: true,
+                userType: true,
+                createdAt: true,
+                updatedAt: true,
+            },
+        });
+
+        if (!user) {
+            throw new HttpException(
+                "Usuário não encontrado",
+                HttpStatus.NOT_FOUND,
+            );
+        }
+
+        return user;
     }
 
     update(id: number, updateUserDto: UpdateUserDto) {
