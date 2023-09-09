@@ -1,0 +1,33 @@
+_id: req_6c98e35ff246400dad9715d2f7aa3bac
+type: Request
+parentId: fld_71c9b00ea4df4e0fa1a53844b4b8ad64
+modified: 1694298106588
+created: 1694295519653
+url: "{{ _.baseUrl }}/users"
+name: Create Admin User ( /users )
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"name": "a.teste@teste.com",
+    	"email": "a.teste@teste.com",
+    	"password": "Teste123",
+    	"userType": "admin"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+  - name: User-Agent
+    value: Insomnia/2023.5.7
+authentication: {}
+metaSortKey: -1694294647130
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

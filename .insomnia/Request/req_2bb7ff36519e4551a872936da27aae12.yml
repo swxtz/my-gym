@@ -1,19 +1,17 @@
-_id: req_530e7e766563485c8219b3ce4cbfcc62
+_id: req_2bb7ff36519e4551a872936da27aae12
 type: Request
-parentId: fld_b8af2a756e86458b90a2adb1db3c2471
-modified: 1694293556928
-created: 1694292076900
-url: "{{ _.baseUrl }}/users"
-name: Create User ( /users )
+parentId: fld_71c9b00ea4df4e0fa1a53844b4b8ad64
+modified: 1694295624912
+created: 1694294675556
+url: "{{ _.baseUrl }}/users/all"
+name: Find All Users ( /users )
 description: ""
-method: POST
+method: GET
 body:
   mimeType: application/json
   text: |-
     {
-    	"name": "teste@teste.com",
-    	"email": "teste@teste.com",
-    	"password": "Teste123"
+    	"email": "a.teste@teste.com"
     }
 parameters: []
 headers:
@@ -22,7 +20,7 @@ headers:
   - name: User-Agent
     value: Insomnia/2023.5.7
 authentication: {}
-metaSortKey: -1694292080187
+metaSortKey: -1694293363633.5
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true
