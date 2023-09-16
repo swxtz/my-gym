@@ -32,7 +32,9 @@ async function seed() {
     };
 
     console.time("Seed");
-
+    console.time("Users");
+    await prisma.exercises.deleteMany();
+    await prisma.workout.deleteMany();
     await prisma.user.deleteMany();
 
     await Promise.all([
@@ -64,6 +66,170 @@ async function seed() {
         }),
     ]);
 
+    console.timeEnd("Users");
+
+    const workout = [
+        {
+            name: "workout 1",
+            description: "workout 1 description",
+            Exercises: [
+                {
+                    name: "exercise 1",
+                    description: "exercise 1 description",
+                    sets: 3,
+                    reps: 10,
+                    restTime: 60,
+                    weight: 100,
+                    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                },
+                {
+                    name: "exercise 2",
+                    description: "exercise 2 description",
+                    sets: 3,
+                    reps: 10,
+                    restTime: 60,
+                    weight: 100,
+                    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                },
+                {
+                    name: "exercise 3",
+                    description: "exercise 3 description",
+                    sets: 3,
+                    reps: 10,
+                    restTime: 60,
+                    weight: 100,
+                    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                },
+            ],
+        },
+        {
+            name: "workout 2",
+            description: "workout 2 description",
+            Exercises: [
+                {
+                    name: "exercise 1",
+                    description: "exercise 1 description",
+                    sets: 3,
+                    reps: 10,
+                    restTime: 60,
+                    weight: 100,
+                    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                },
+                {
+                    name: "exercise 2",
+                    description: "exercise 2 description",
+                    sets: 3,
+                    reps: 10,
+                    restTime: 60,
+                    weight: 100,
+                    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                },
+                {
+                    name: "exercise 3",
+                    description: "exercise 3 description",
+                    sets: 3,
+                    reps: 10,
+                    restTime: 60,
+                    weight: 100,
+                    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                },
+            ],
+        },
+    ];
+
+    console.time("Workouts");
+    await Promise.all([
+        await prisma.workout.create({
+            data: {
+                name: workout[0].name,
+                description: workout[0].description,
+                type: "strength",
+                Exercises: {
+                    create: [
+                        {
+                            name: workout[0].Exercises[0].name,
+                            description: workout[0].Exercises[0].description,
+                            muscleGroup: "chest",
+                            sets: workout[0].Exercises[0].sets,
+                            reps: workout[0].Exercises[0].reps,
+                            restTime: workout[0].Exercises[0].restTime,
+                            weight: workout[0].Exercises[0].weight,
+                            weightUnit: "kg",
+                            videoUrl: workout[0].Exercises[0].videoUrl,
+                        },
+                        {
+                            name: workout[0].Exercises[1].name,
+                            description: workout[0].Exercises[1].description,
+                            muscleGroup: "chest",
+                            sets: workout[0].Exercises[1].sets,
+                            reps: workout[0].Exercises[1].reps,
+                            restTime: workout[0].Exercises[1].restTime,
+                            weight: workout[0].Exercises[1].weight,
+                            weightUnit: "kg",
+                            videoUrl: workout[0].Exercises[1].videoUrl,
+                        },
+                        {
+                            name: workout[0].Exercises[2].name,
+                            description: workout[0].Exercises[2].description,
+                            muscleGroup: "chest",
+                            sets: workout[0].Exercises[2].sets,
+                            reps: workout[0].Exercises[2].reps,
+                            restTime: workout[0].Exercises[2].restTime,
+                            weight: workout[0].Exercises[2].weight,
+                            weightUnit: "kg",
+                            videoUrl: workout[0].Exercises[2].videoUrl,
+                        },
+                    ],
+                },
+            },
+        }),
+
+        await prisma.workout.create({
+            data: {
+                name: workout[1].name,
+                description: workout[1].description,
+                type: "strength",
+                Exercises: {
+                    create: [
+                        {
+                            name: workout[1].Exercises[0].name,
+                            description: workout[1].Exercises[0].description,
+                            muscleGroup: "chest",
+                            sets: workout[1].Exercises[0].sets,
+                            reps: workout[1].Exercises[0].reps,
+                            restTime: workout[1].Exercises[0].restTime,
+                            weight: workout[1].Exercises[0].weight,
+                            weightUnit: "kg",
+                            videoUrl: workout[1].Exercises[0].videoUrl,
+                        },
+                        {
+                            name: workout[1].Exercises[1].name,
+                            description: workout[1].Exercises[1].description,
+                            muscleGroup: "chest",
+                            sets: workout[1].Exercises[1].sets,
+                            reps: workout[1].Exercises[1].reps,
+                            restTime: workout[1].Exercises[1].restTime,
+                            weight: workout[1].Exercises[1].weight,
+                            weightUnit: "kg",
+                            videoUrl: workout[1].Exercises[1].videoUrl,
+                        },
+                        {
+                            name: workout[1].Exercises[2].name,
+                            description: workout[1].Exercises[2].description,
+                            muscleGroup: "chest",
+                            sets: workout[1].Exercises[2].sets,
+                            reps: workout[1].Exercises[2].reps,
+                            restTime: workout[1].Exercises[2].restTime,
+                            weight: workout[1].Exercises[2].weight,
+                            weightUnit: "kg",
+                            videoUrl: workout[1].Exercises[2].videoUrl,
+                        },
+                    ],
+                },
+            },
+        }),
+    ]);
+    console.timeEnd("Workouts");
     console.timeEnd("Seed");
     console.log("Seed completed");
 }

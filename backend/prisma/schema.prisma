@@ -20,10 +20,76 @@ model User {
     createdAt DateTime @default(now()) @map("created_at")
     updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
 
+    workouts Workout[]
+
     @@map("users")
 }
 
 enum UserType {
     user
     admin
+}
+
+model Workout {
+    id          String      @id @default(uuid())
+    name        String
+    description String?
+    userId      String?
+    type        WorkoutType @default(strength)
+    weekDays    WorkoutDay  @default(monday) @map("week_days")
+    createdAt   DateTime    @default(now()) @map("created_at")
+    updatedAt   DateTime    @default(now()) @updatedAt @map("updated_at")
+    User        User?       @relation(fields: [userId], references: [id])
+    Exercises   Exercises[]
+
+    @@map("workouts")
+}
+
+enum WorkoutType {
+    strength
+    cardio
+}
+
+enum WorkoutDay {
+    monday
+    tuesday
+    wednesday
+    thursday
+    friday
+    saturday
+    sunday
+}
+
+model Exercises {
+    id          Int         @id @default(autoincrement())
+    name        String
+    description String?
+    weight      Int         @default(0)
+    weightUnit  WeightUnit  @default(kg) @map("weight_unit")
+    reps        Int         @default(0)
+    sets        Int         @default(0)
+    videoUrl    String?     @map("video_url")
+    muscleGroup MuscleGroup @default(cardio) @map("muscle_group")
+    workoutId   String?
+    restTime    Int         @default(0) @map("rest_time")
+    createdAt   DateTime    @default(now()) @map("created_at")
+    updatedAt   DateTime    @default(now()) @updatedAt @map("updated_at")
+    Workout     Workout?    @relation(fields: [workoutId], references: [id])
+
+    @@map("exercises")
+}
+
+enum WeightUnit {
+    kg
+    lb
+}
+
+enum MuscleGroup {
+    chest
+    back
+    legs
+    shoulders
+    arms
+    abs
+    cardio
 }
