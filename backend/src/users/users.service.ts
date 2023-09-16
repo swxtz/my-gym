@@ -81,29 +81,27 @@ export class UsersService {
     }
 
     async findUser(data: any) {
-        // const user = await this.prisma.user.findUnique({
-        //     where: { email: data },
-        //     select: {
-        //         id: true,
-        //         name: true,
-        //         email: true,
-        //         avatarUrl: true,
-        //         userType: true,
-        //         createdAt: true,
-        //         updatedAt: true,
-        //     },
-        // });
+        const user = await this.prisma.user.findUnique({
+            where: { email: data.email },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                avatarUrl: true,
+                userType: true,
+                createdAt: true,
+                updatedAt: true,
+            },
+        });
 
-        // if (!user) {
-        //     throw new HttpException(
-        //         "Usuário não encontrado",
-        //         HttpStatus.NOT_FOUND,
-        //     );
-        // }
+        if (!user) {
+            throw new HttpException(
+                "Usuário não encontrado",
+                HttpStatus.NOT_FOUND,
+            );
+        }
 
-        // return user;
-
-        return data;
+        return user;
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
