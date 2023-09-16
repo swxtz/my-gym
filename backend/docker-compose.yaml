@@ -3,7 +3,7 @@ version: '3'
 
 services:
     db:
-        container_name: db-mygyn
+        container_name: mygym-postgres
         image: bitnami/postgresql:15.4.0
         restart: always
         ports:
@@ -11,7 +11,7 @@ services:
         environment:
             - POSTGRESQL_USERNAME=dev
             - POSTGRESQL_PASSWORD=postgres
-            - POSTGRESQL_DATABASE=mygyn
+            - POSTGRESQL_DATABASE=mygym
         volumes:
             - postgres_data:/bitnami/postgresql
 

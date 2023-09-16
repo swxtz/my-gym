@@ -20,6 +20,7 @@ export class AuthService {
                 name: true,
                 email: true,
                 avatarUrl: true,
+                userType: true,
             },
         });
 
@@ -44,6 +45,7 @@ export class AuthService {
             name: user.name,
             email: user.email,
             avatarUrl: user.avatarUrl,
+            userType: user.userType,
         };
 
         return {

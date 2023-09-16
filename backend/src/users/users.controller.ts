@@ -11,13 +11,18 @@ import { UsersService } from "./users.service";
 import { CreateUserDto } from "./dtos/create-user.dto";
 import { UpdateUserDto } from "./dtos/update-user.dto";
 import { ZodValidationPipe } from "nestjs-zod";
-import { UsePipes } from "@nestjs/common/decorators";
+import { Headers, UseGuards, UsePipes } from "@nestjs/common/decorators";
 import { GetAllUserDto } from "./dtos/get-all-user.dto";
 import { RemoveUserDto } from "./dtos/remove-user.dto";
+import { AuthGuard } from "src/auth/auth.guard";
+import { UtilsService } from "src/utils/utils.service";
 
 @Controller("users")
 export class UsersController {
-    constructor(private readonly usersService: UsersService) {}
+    constructor(
+        private readonly usersService: UsersService,
+        private readonly jwtUtils: UtilsService,
+    ) {}
 
     @Post()
     @UsePipes(new ZodValidationPipe(CreateUserDto))
@@ -31,9 +36,11 @@ export class UsersController {
         return this.usersService.findAll(findAllUserDto);
     }
 
-    @Get(":email")
-    async findUser(@Param("email") email: string) {
-        return this.usersService.findUser(email);
+    @Get("")
+    @UseGuards(AuthGuard)
+    async findUser(@Headers("Authorization") jwt: any) {
+        const token = this.jwtUtils.getToken(jwt);
+        return this.usersService.findUser(token);
     }
 
     @Patch(":email")
