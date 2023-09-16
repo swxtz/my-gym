@@ -1,0 +1,31 @@
+_id: req_10068434fd9a45028d138a103f1504eb
+type: Request
+parentId: fld_55aa1d62d54a4423b3a86666f424a79c
+modified: 1694298098445
+created: 1694297896749
+url: "{{ _.baseUrl }}/users"
+name: Delete User ( /users )
+description: ""
+method: DELETE
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"adminEmail": "a.teste@teste.com",
+    	"targetEmail": "teste@teste.com"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+  - name: User-Agent
+    value: Insomnia/2023.5.7
+authentication: {}
+metaSortKey: -1694291783554.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

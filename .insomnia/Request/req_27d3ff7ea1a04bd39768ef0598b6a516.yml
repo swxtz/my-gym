@@ -1,0 +1,30 @@
+_id: req_27d3ff7ea1a04bd39768ef0598b6a516
+type: Request
+parentId: fld_55aa1d62d54a4423b3a86666f424a79c
+modified: 1694890000712
+created: 1694294675556
+url: "{{ _.baseUrl }}/users/all"
+name: Find All Users ( /users/all )
+description: ""
+method: GET
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"email": "a.teste@teste.com"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+  - name: User-Agent
+    value: Insomnia/2023.5.7
+authentication: {}
+metaSortKey: -1694293363633.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

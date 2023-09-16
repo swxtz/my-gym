@@ -1,0 +1,26 @@
+_id: req_f6b40a0d40ef4f66a5180cee84e60eb7
+type: Request
+parentId: fld_55aa1d62d54a4423b3a86666f424a79c
+modified: 1694892361617
+created: 1694294647080
+url: "{{ _.baseUrl }}/users"
+name: Get User by email ( /users/:email )
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - name: User-Agent
+    value: Insomnia/2023.5.7
+authentication:
+  type: bearer
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4Y2ViMjIwZi1hY2U1LTQ3N2UtYjUzNi04NzZmY2U5MTY5M2MiLCJuYW1lIjoidGVzdGVAdGVzdGUuY29tIiwiZW1haWwiOiJ0ZXN0ZUB0ZXN0ZS5jb20iLCJhdmF0YXJVcmwiOm51bGwsInVzZXJUeXBlIjoidXNlciIsImlhdCI6MTY5NDg5MDIzNCwiZXhwIjoxNjk1NDk1MDM0fQ.0EYWt8Ruwo9dciIukxbzlKreTFURXGUmyNoWwJGidQg
+  disabled: false
+metaSortKey: -1694294647080
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

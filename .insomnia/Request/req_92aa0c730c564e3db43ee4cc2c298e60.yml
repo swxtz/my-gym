@@ -1,0 +1,30 @@
+_id: req_92aa0c730c564e3db43ee4cc2c298e60
+type: Request
+parentId: fld_55aa1d62d54a4423b3a86666f424a79c
+modified: 1694890022381
+created: 1694889800098
+url: "{{ _.baseUrl }}/users/me"
+name: Get My User ( /users/me )
+description: ""
+method: GET
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+  - name: User-Agent
+    value: Insomnia/2023.5.7
+authentication: {}
+metaSortKey: -1694889800098
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

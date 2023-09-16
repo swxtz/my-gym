@@ -1,0 +1,23 @@
+_id: req_7851feef5a9a44969607746c1d9d979e
+type: Request
+parentId: fld_55aa1d62d54a4423b3a86666f424a79c
+modified: 1694298101428
+created: 1694296443364
+url: "{{ _.baseUrl }}/users/adsad"
+name: Update User ( /users )
+description: ""
+method: PATCH
+body: {}
+parameters: []
+headers:
+  - name: User-Agent
+    value: Insomnia/2023.5.7
+authentication: {}
+metaSortKey: -1694291783454.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,32 @@
+_id: req_7b1bb7fc3351427a96eea87a5fa565c0
+type: Request
+parentId: fld_55aa1d62d54a4423b3a86666f424a79c
+modified: 1694298103857
+created: 1694292076900
+url: "{{ _.baseUrl }}/users"
+name: Create User ( /users )
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"name": "teste@teste.com",
+    	"email": "teste@teste.com",
+    	"password": "Teste123"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+  - name: User-Agent
+    value: Insomnia/2023.5.7
+authentication: {}
+metaSortKey: -1694294647180
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
